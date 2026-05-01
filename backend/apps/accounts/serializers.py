@@ -16,24 +16,38 @@ class DoctorSerializer(serializers.ModelSerializer):
 
 class DoctorRegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    specialization = serializers.CharField(required=False, allow_blank=True)
+    hospital = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = Doctor
         fields = ['name', 'email','contact_number', 'license_no', 'specialization', 'hospital', 'password']
 
     def create(self, validated_data):
+        # Extract password and optional fields
+        password = validated_data.pop('password')
+        email = validated_data.pop('email')
+        name = validated_data.pop('name')
+        contact_number = validated_data.pop('contact_number')
+        license_no = validated_data.pop('license_no')
+        specialization = validated_data.pop('specialization', '')
+        hospital = validated_data.pop('hospital', '')
+        
+        # Create User
         user = User.objects.create_user(
-            username=validated_data['email'],
-            email=validated_data['email'],
-            password=validated_data['password']
+            username=email,
+            email=email,
+            password=password
         )
+        
+        # Create Doctor
         doctor = Doctor.objects.create(
             user=user,
-            name=validated_data['name'],
-            email=validated_data['email'],
-            contact_number=validated_data['contact_number'],
-            license_no=validated_data['license_no'],
-            specialization=validated_data.get('specialization', ''),
-            hospital=validated_data.get('hospital', ''),
+            name=name,
+            email=email,
+            contact_number=contact_number,
+            license_no=license_no,
+            specialization=specialization,
+            hospital=hospital,
         )
         return doctor

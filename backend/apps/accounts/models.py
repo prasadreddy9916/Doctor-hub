@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
 phone_validator = RegexValidator(
-    regex=r'^\+91\d{10}$',
+    regex=r'^\d{10}$',
     message="Enter a valid Indian number like +919876543210"
 )
 
