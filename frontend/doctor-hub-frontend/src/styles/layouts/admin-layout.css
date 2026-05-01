@@ -1,0 +1,84 @@
+@import '../variables.css';
+
+/* Container */
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--background);
+}
+
+/* Sidebar - Using your Primary Blue */
+.admin-sidebar {
+  width: var(--sidebar-width);
+  background-color: #2D9CDB; /* PRIMARY BLUE */
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100vh;
+}
+
+/* Logo */
+.logo-area {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-dark); /* Darker Blue for Logo area */
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Links */
+.sidebar-nav {
+  padding: 20px 0;
+  flex: 1;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 14px 24px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background-color: var(--white);
+  color: #2D9CDB; /* Blue text on white hover */
+  border-left: 5px solid var(--secondary-color); /* Green Accent */
+}
+
+/* Main Content Wrapper */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.top-header {
+  height: var(--header-height);
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+/* Content Area */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+  background-color: var(--background);
+}

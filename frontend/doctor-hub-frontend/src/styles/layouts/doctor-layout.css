@@ -1,0 +1,111 @@
+@import '../variables.css';
+
+/* 1. THE MISSING WRAPPER */
+.doctor-layout {
+  display: flex;           /* Makes Sidebar and Content sit side-by-side */
+  height: 100vh;           /* Full height of the screen */
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--light-bg);
+}
+
+/* 2. THE MISSING SIDEBAR STYLES */
+.sidebar {
+  width: var(--sidebar-width); /* 260px - Gives the sidebar its width */
+  background-color: #0f766e;    /* Teal Green - Gives the sidebar color */
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;               /* Prevents sidebar from shrinking */
+  height: 100vh;
+}
+
+/* 3. LOGO AREA */
+.logo-area {
+  height: var(--header-height); /* 70px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #14b8a6;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* 4. NAVIGATION LINKS */
+.sidebar-nav {
+  padding: 20px 0;
+  flex: 1;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 12px 24px;
+  color: #ccfbf1;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background-color: #14b8a6;
+  color: var(--white);
+  border-left: 4px solid #f0fdfa;
+}
+
+/* 5. MAIN CONTENT AREA (Matches JSX 'main-content') */
+.main-content {
+  flex: 1;                      /* Takes up remaining space */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 6. TOP HEADER */
+.top-header {
+  height: var(--header-height);
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info h3 {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.badge-specialization {
+  font-size: 0.85rem;
+  background-color: #ccfbf1;
+  color: #0f766e;
+  padding: 2px 8px;
+  border-radius: 12px;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+.btn-logout {
+  padding: 8px 16px;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* 7. CONTENT AREA (Scrollable) */
+.content-area {
+  flex: 1;
+  overflow-y: auto; /* Enables scrolling only for this area */
+  padding: 30px;
+}

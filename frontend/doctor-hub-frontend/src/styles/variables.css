@@ -1,0 +1,22 @@
+:root {
+  /* --- Your Requested Colors --- */
+  --primary-color: #2D9CDB;      /* Blue */
+  /* --primary-dark: #1a7bb5;        Darker Blue for hover */
+  --secondary-color: #27AE60;    /* Green */
+  --success-color: #27AE60;      /* Same as secondary */
+  --danger-color: #EB5757;       /* Red for delete/errors */
+  --warning-color: #F2994A;      /* Orange */
+  
+  --background: #F5F7FA;         /* Light Background */
+  --white: #ffffff;
+  --text-dark: #333333;          /* Dark Gray */
+  --text-light: #828282;         /* Light Gray */
+  --border-color: #E0E0E0;
+
+  /* Spacing & Sizing */
+  --sidebar-width: 260px;
+  --header-height: 70px;
+  --border-radius: 8px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}

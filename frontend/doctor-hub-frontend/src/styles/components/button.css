@@ -1,0 +1,62 @@
+@import '../variables.css';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  gap: 8px;
+}
+
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Primary Button (Blue) */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* Secondary Button (Green) */
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background-color: #219150; /* Darker Green */
+  transform: translateY(-1px);
+}
+
+/* Danger Button (Red) */
+.btn-danger {
+  background-color: var(--danger-color);
+  color: var(--white);
+}
+.btn-danger:hover {
+  background-color: #d14a4a;
+}
+
+/* Outline Button (For "Cancel" actions) */
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+}
+.btn-outline:hover {
+  background-color: var(--background);
+  border-color: var(--text-light);
+}
+
+/* Sizes */
+.btn-full { width: 100%; }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
