@@ -1,64 +1,94 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAuthStore from '../../context/useAuthStore';
-import Card from '../../components/common/Card';
-import Input from '../../components/common/Input';
-import Button from '../../components/common/Button';
-import Loader from '../../components/common/Loader';
-import '../../styles/pages/auth/login.css';
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import logo from "../../assets/logo1.png";
+import PopupModal from "../../components/PopupModal.jsx";
+import "../../styles/auth.css";
+import useAuthStore from "../../context/useAuthStore";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const { login, isLoading } = useAuthStore();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [popup, setPopup] = useState({ open: false });
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const login = useAuthStore((state) => state.login);
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const result = await login(formData.email, formData.password);
-    if (result.success) {
-      const role = useAuthStore.getState().role;
-      navigate(role === 'admin' ? '/admin/dashboard' : '/doctor/dashboard');
-    } else {
-      alert(result.error);
-    }
-  };
+  e.preventDefault();
+  setIsLoading(true);
 
+  try {
+    const result = await login(formData.email, formData.password);
+
+    if (result.success) {
+      setPopup({
+        open: true,
+        type: "success",
+        title: "Login Successful",
+        message: "Welcome back doctor 👨‍⚕️",
+      });
+
+      // Redirect based on role
+      const role = useAuthStore.getState().role;
+
+      setTimeout(() => {
+        if (role === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/doctor/dashboard");
+        }
+      }, 1000);
+
+    } else {
+      setPopup({
+        open: true,
+        type: "error",
+        title: "Login Failed",
+        message: result.error,
+      });
+    }
+
+  } catch (err) {
+    setPopup({
+      open: true,
+      type: "error",
+      title: "Error",
+      message: "Something went wrong",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
-    <div className="auth-container">
-      <Card title="Login" className="auth-card">
-        <form onSubmit={handleSubmit}>
-          <Input
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="doctor@example.com"
-            required
-          />
-          <Input
-            label="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="********"
-            required
-          />
-          <Button type="submit" fullWidth disabled={isLoading}>
-            {isLoading ? <Loader /> : 'Login'}
-          </Button>
-          <p className="auth-switch">
-            Don't have an account? <a href="/register">Register here</a>
-          </p>
+    <div className="auth-grid">
+      <div className="auth-side gradient-hero">
+        <div className="auth-blob" />
+        <Link to="/" className="auth-brand">
+          <img src={logo} className="logo-img" alt="logo"/>
+          <span className="text-2xl font-extrabold">DoctorHub</span>
+        </Link>
+        <div className="relative z-10">
+          <h2 className="text-4xl font-extrabold mb-4">Welcome back, doctor.</h2>
+          <p className="text-white/80">Continue your learning journey with thousands of medical professionals worldwide.</p>
+        </div>
+        <div className="text-white/60 text-sm relative z-10">© 2026 DoctorHub</div>
+      </div>
+      <div className="auth-form-wrap">
+        <form onSubmit={handleSubmit} className="auth-form">
+          <h1 className="text-3xl font-extrabold mb-2">Login</h1>
+          <p className="text-muted-foreground mb-4">Welcome back. Please enter your details.</p>
+          <input name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="Email" className="auth-input" />
+          <div className="auth-password">
+            <input name="password" type={showPassword ? "text" : "password"} required value={formData.password} onChange={handleChange} placeholder="Password" className="auth-input pr-12" />
+            <button type="button" className="auth-eye" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}</button>
+          </div>
+          <button type="submit" disabled={isLoading} className="btn-primary w-full">{isLoading ? "Logging in..." : "Login"}</button>
+          <p className="text-sm text-center text-muted-foreground">No account? <Link to="/register" className="text-[hsl(var(--primary))] font-semibold">Register</Link></p>
         </form>
-      </Card>
+      </div>
+      <PopupModal {...popup} onClose={() => setPopup({ open: false })} />
     </div>
   );
 };
-
 export default Login;

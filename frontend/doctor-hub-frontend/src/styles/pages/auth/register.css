@@ -3,18 +3,25 @@
 .auth-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   background-color: var(--light-bg);
-  overflow-y: auto; /* Allow scroll if form is long */
-  padding: 20px 0;
+  padding: 40px 20px;
 }
 
+/* 🔥 Wider container */
 .auth-card {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;   /* increased from 500px */
   padding: 40px;
   box-shadow: var(--shadow-md);
+}
+
+/* Form layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .auth-card .card-title {
@@ -23,6 +30,25 @@
   color: var(--primary-color);
 }
 
+/* Password toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #64748b;
+}
+
+.toggle-password:hover {
+  color: #0f766e;
+}
+
+/* Switch link */
 .auth-switch {
   text-align: center;
   margin-top: 20px;
@@ -32,4 +58,10 @@
 .auth-switch a {
   color: var(--primary-color);
   font-weight: 600;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
 }

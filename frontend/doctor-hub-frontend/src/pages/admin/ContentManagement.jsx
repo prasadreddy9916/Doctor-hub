@@ -44,19 +44,36 @@ const ContentManagement = () => {
     }
   };
 
+
+
   return (
-    <div className="upload-page">
-      <Card title="Upload New Content">
-        <form onSubmit={handleSubmit}>
-          <Input label="Title" name="title" value={formData.title} onChange={handleChange} required />
+  <div className="upload-wrapper">
+    <div className="upload-container">
+      <Card title="📤 Upload New Content">
+        <form onSubmit={handleSubmit} className="upload-form">
+          
+          <Input
+            label="Title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+
           <div className="form-group">
             <label>Type</label>
-            <select name="type" value={formData.type} onChange={handleChange} className="form-control">
-              <option value="video">Video</option>
-              <option value="image">Image</option>
-              <option value="seminar">Seminar</option>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="form-control"
+            >
+              <option value="video">🎥 Video</option>
+              <option value="image">🖼 Image</option>
+              <option value="seminar">🎤 Seminar</option>
             </select>
           </div>
+
           <div className="form-group">
             <label>Description</label>
             <textarea
@@ -64,19 +81,24 @@ const ContentManagement = () => {
               className="form-control"
               value={formData.description}
               onChange={handleChange}
-            ></textarea>
+              placeholder="Enter description..."
+            />
           </div>
-          <div className="form-group">
-            <label>File</label>
-            <input type="file" onChange={handleFileChange} className="form-control" />
+
+          <div className="form-group file-upload">
+            <label>Upload File</label>
+            <input type="file" onChange={handleFileChange} />
           </div>
+
           <Button type="submit" disabled={uploading}>
-            {uploading ? 'Uploading...' : 'Upload Content'}
+            {uploading ? 'Uploading...' : '🚀 Upload Content'}
           </Button>
+
         </form>
       </Card>
     </div>
-  );
+  </div>
+);
 };
 
 export default ContentManagement;

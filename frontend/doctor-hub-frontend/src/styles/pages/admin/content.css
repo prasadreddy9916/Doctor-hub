@@ -1,8 +1,52 @@
 @import '../../variables.css';
 
-/* Upload Page */
-.upload-page {
-  max-width: 600px;
+/* Wrapper takes full right panel */
+.upload-wrapper {
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: flex-start;   /* keep top spacing */
+  padding: 40px 20px;
+  height: 100%;
+}
+
+/* Card container */
+.upload-container {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* Form spacing */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* File upload styling */
+.file-upload input {
+  border: 1px dashed var(--border-color);
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f9fafb;
+}
+
+/* Improve inputs */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+/* Add hover effect */
+.upload-container .card {
+  transition: all 0.2s ease;
+}
+
+.upload-container .card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Access Page */

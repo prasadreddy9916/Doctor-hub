@@ -1,22 +1,37 @@
 :root {
-  /* --- Your Requested Colors --- */
-  --primary-color: #2D9CDB;      /* Blue */
-  /* --primary-dark: #1a7bb5;        Darker Blue for hover */
-  --secondary-color: #27AE60;    /* Green */
-  --success-color: #27AE60;      /* Same as secondary */
-  --danger-color: #EB5757;       /* Red for delete/errors */
-  --warning-color: #F2994A;      /* Orange */
+  /* --- Primary Colors --- */
+  --primary: 184 76% 38%;         /* Blue HSL */
+  --primary-color: #2D9CDB;       /* Blue */
+  --secondary-color: #27AE60;     /* Green */
+  --success-color: #27AE60;       /* Same as secondary */
+  --danger-color: #EB5757;        /* Red */
+  --warning-color: #F2994A;       /* Orange */
   
-  --background: #F5F7FA;         /* Light Background */
+  --background: #F5F7FA;          /* Light Background */
   --white: #ffffff;
-  --text-dark: #333333;          /* Dark Gray */
-  --text-light: #828282;         /* Light Gray */
+  --text-dark: #333333;           /* Dark Gray */
+  --text-light: #828282;          /* Light Gray */
+  --text-muted: #A0A0A0;          /* Muted Gray */
   --border-color: #E0E0E0;
+  --foreground: 0 0% 14%;         /* Dark text HSL */
+
+  /* --- Gradients --- */
+  --gradient-hero: linear-gradient(135deg, #00BCD4 0%, #2196F3 100%);
+  --gradient-coral: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);
+  --gradient-card: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(0, 188, 212, 0.05) 100%);
+  --gradient-purple: linear-gradient(135deg, #9C27B0 0%, #E91E63 100%);
+  --gradient-amber: linear-gradient(135deg, #FFA726 0%, #FFB74D 100%);
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 28px rgba(0,0,0,0.12);
+  --shadow-glow: 0 20px 60px rgba(33, 150, 243, 0.25);
+  --shadow-coral: 0 20px 60px rgba(255, 107, 107, 0.25);
+  --shadow-card: 0 8px 24px rgba(0,0,0,0.06);
 
   /* Spacing & Sizing */
   --sidebar-width: 260px;
   --header-height: 70px;
   --border-radius: 8px;
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
 }

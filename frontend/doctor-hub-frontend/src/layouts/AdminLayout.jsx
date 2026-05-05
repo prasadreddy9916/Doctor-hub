@@ -2,6 +2,8 @@ import React from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../context/useAuthStore';
 import '../styles/layouts/admin-layout.css';
+import logo from '../assets/logo1.png';
+import { Weight } from 'lucide-react';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -20,7 +22,8 @@ const AdminLayout = () => {
     <div className="layout-container admin-layout">
       <aside className="sidebar">
         <div className="logo-area">
-          <h2>🧑‍💼 AdminPanel</h2>
+          <img src={logo} alt="DoctorHub" className="logo-img" />
+          <span className="logo-text">DoctorHub</span>
         </div>
         <nav className="sidebar-nav">
           <Link to="/admin/dashboard" className={isActive('/admin/dashboard') ? 'active' : ''}>
@@ -40,9 +43,13 @@ const AdminLayout = () => {
 
       <main className="main-content">
         <header className="top-header">
-          <h3>Control Tower</h3>
+          <h3 style={{ color: '#3a14b8', fontWeight: 'bold',fontsize:'2em' }}>Admin Panel</h3>
           <div className="user-actions">
-            <span>Hello, {user?.username || 'Admin'}</span>
+          <span >
+  Hello, {user?.first_name || user?.last_name
+    ? `${user.first_name || ''} ${user.last_name || ''}`.trim()
+    : user?.username || 'Admin'}
+</span>
             <button onClick={handleLogout} className="btn-logout">Logout</button>
           </div>
         </header>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../context/useAuthStore';
 import '../styles/layouts/doctor-layout.css';
+import logo from '../assets/logo1.png';
 
 const DoctorLayout = () => {
   const navigate = useNavigate();
@@ -20,7 +21,8 @@ const DoctorLayout = () => {
     <div className="layout-container doctor-layout">
       <aside className="sidebar">
         <div className="logo-area">
-          <h2>👨‍⚕️ DoctorPortal</h2>
+          <img src={logo} alt="DoctorHub" className="logo-img" />
+          <span className="logo-text">DoctorHub</span>
         </div>
         <nav className="sidebar-nav">
           <Link to="/doctor/dashboard" className={isActive('/doctor/dashboard') ? 'active' : ''}>
@@ -40,12 +42,23 @@ const DoctorLayout = () => {
 
       <main className="main-content">
         <header className="top-header">
-          <div className="user-info">
-            <h3>Welcome, {user?.name || 'Doctor'}</h3>
-            <span className="badge-specialization">{user?.specialization}</span>
-          </div>
-          <button onClick={handleLogout} className="btn-logout">Logout</button>
-        </header>
+  <div className="user-info">
+
+    <h3 className="welcome-text">
+      Welcome, {user?.name || 'Doctor'} 
+      {user?.specialization && (
+        <span className="spec-inline">
+          {" "}— Specialization :{user.specialization}
+        </span>
+      )}
+    </h3>
+
+  </div>
+
+  <button onClick={handleLogout} className="btn-logout">
+    Logout
+  </button>
+</header>
 
         <div className="content-area">
           <Outlet />

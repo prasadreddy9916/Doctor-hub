@@ -65,9 +65,29 @@ const useAuthStore = create(
           return { success: true };
         } catch (error) {
           set({ isLoading: false });
+          
+          // Handle different error response formats from Django REST Framework
+          let errorMessage = 'Registration failed';
+          
+          if (error.response?.data) {
+            const data = error.response.data;
+            
+            // Handle field-specific errors
+            if (typeof data === 'object' && !Array.isArray(data)) {
+              const firstKey = Object.keys(data)[0];
+              if (firstKey && Array.isArray(data[firstKey])) {
+                errorMessage = data[firstKey][0];
+              } else if (data.detail) {
+                errorMessage = data.detail;
+              } else if (data.error) {
+                errorMessage = data.error;
+              }
+            }
+          }
+          
           return {
             success: false,
-            error: error.response?.data?.detail || 'Registration failed'
+            error: errorMessage
           };
         }
       },

@@ -13,6 +13,9 @@ const Dashboard = () => {
   return (
     <div className="dashboard-page">
       <h2>Admin Overview</h2>
+<p className="welcome-text">
+  Welcome back 👋 — here’s a quick snapshot of your platform activity.
+</p>
 
       {loading && <p>Loading stats...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}

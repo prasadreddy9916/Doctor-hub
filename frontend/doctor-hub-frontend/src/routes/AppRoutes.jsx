@@ -2,24 +2,45 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from '../hooks/useProtectedRoute.jsx';
 
-import Login from '../pages/auth/Login';
-import Register from '../pages/auth/Register';
-import AdminLayout from '../layouts/AdminLayout';
-import DoctorLayout from '../layouts/DoctorLayout';
-import Dashboard from '../pages/admin/Dashboard';
-import DoctorApproval from '../pages/admin/DoctorApproval';
-import ContentManagement from '../pages/admin/ContentManagement';
-import AssignAccess from '../pages/admin/AssignAccess';
-import ContentList from '../pages/admin/ContentList';
-import DoctorDashboard from '../pages/doctor/Dashboard';
-import ContentPage from '../pages/doctor/ContentPage';
-import MyAccess from '../pages/doctor/MyAccess';
-import Profile from '../pages/doctor/Profile';
-import NotFound from '../pages/NotFound';
+
+
+import SiteLayout from '../layouts/SiteLayout.jsx';
+import Home from '../pages/Home.jsx';
+import About from '../pages/About.jsx';
+import Services from '../pages/Services.jsx';
+import Contact from '../pages/Contact.jsx';
+
+import Login from '../pages/auth/Login.jsx';
+import Register from '../pages/auth/Register.jsx';
+
+import AdminLayout from '../layouts/AdminLayout.jsx';
+import DoctorLayout from '../layouts/DoctorLayout.jsx';
+
+import Dashboard from '../pages/admin/Dashboard.jsx';
+import DoctorApproval from '../pages/admin/DoctorApproval.jsx';
+import ContentManagement from '../pages/admin/ContentManagement.jsx';
+import AssignAccess from '../pages/admin/AssignAccess.jsx';
+import ContentList from '../pages/admin/ContentList.jsx';
+
+import DoctorDashboard from '../pages/doctor/Dashboard.jsx';
+import ContentPage from '../pages/doctor/ContentPage.jsx';
+import MyAccess from '../pages/doctor/MyAccess.jsx';
+import Profile from '../pages/doctor/Profile.jsx';
+
+import NotFound from '../pages/NotFound.jsx';
 
 const AppRoutes = () => {
   return (
     <Routes>
+
+    {/* Public marketing site */}
+          <Route element={<SiteLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
+
       {/* Public Routes */}
       {/* FIX 1: Changed 'endpoint' to 'element' */}
       <Route path="/login" element={<Login />} />

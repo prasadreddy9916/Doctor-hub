@@ -153,9 +153,14 @@ const handleGrantAccess = async () => {
                 <div className="media-container">
                   {content.file_url ? (
                     content.type === 'video' ? (
-                      <div className="video-placeholder">
-                        <span className="play-icon">▶</span>
-                      </div>
+                     <div className="video-container">
+  <video
+    src={content.file_url}
+    className="video-player"
+    controls
+    controlsList="nodownload"
+  />
+</div>
                     ) : (
                       <img src={content.file_url} alt={content.title} className="content-preview" />
                     )

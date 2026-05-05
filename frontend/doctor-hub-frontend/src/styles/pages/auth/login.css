@@ -35,3 +35,20 @@
 .auth-switch a:hover {
   text-decoration: underline;
 }
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #64748b;
+}
+
+.toggle-password:hover {
+  color: #0f766e;
+}
